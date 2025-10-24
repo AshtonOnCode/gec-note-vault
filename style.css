@@ -1,0 +1,149 @@
+/* General Layout */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f5f7fa;
+  color: #333;
+}
+
+/* Navbar */
+nav {
+  background: #0077b6;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+}
+
+nav h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.nav-links a, nav button {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover, nav button:hover {
+  color: #ffdd00;
+}
+
+/* Home Section */
+.home {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.home h2 {
+  font-size: 32px;
+  color: #023e8a;
+}
+
+.home button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.home button:hover {
+  background: #0096c7;
+}
+
+/* Forms */
+.form-container {
+  background: white;
+  padding: 30px;
+  width: 350px;
+  margin: 80px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #0077b6;
+}
+
+.form-container input, .form-container textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.form-container button {
+  width: 100%;
+  background: #0077b6;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-container button:hover {
+  background: #0096c7;
+}
+
+/* Dashboard */
+.dashboard {
+  text-align: center;
+  margin-top: 100px;
+}
+
+/* Notes List */
+.notes-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 40px;
+}
+
+.note-card {
+  background: white;
+  width: 250px;
+  margin: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.note-card h3 {
+  color: #0077b6;
+  font-size: 18px;
+}
+
+.note-card p {
+  font-size: 14px;
+}
+
+.note-card button {
+  margin-top: 10px;
+  background: #0096c7;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.note-card button:hover {
+  background: #0077b6;
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | GEC Note Vault</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+    }
+
+    nav {
+      background: #4a90e2;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      flex: 1 1 200px;
+      background: #e1ecf7;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #333;
+      font-size: 18px;
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .overview {
+      margin-bottom: 40px;
+    }
+
+    .overview span {
+      display: inline-block;
+      margin-right: 20px;
+      font-weight: bold;
+      color: #4a90e2;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1>
+  <img src="logo.jpg" alt="Logo" style="width:30px; height:30px; vertical-align: middle;">
+  GEC Note Vault
+</h1>
+
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="notes.html">Notes</a>
+      <a href="upload.html">Upload</a>
+    </div>
+  </nav>
+
+  <main>
+    <h2>Dashboard Overview</h2>
+    <div class="overview">
+      <span>Total PDFs: 2</span>
+      <span>Total Images: 2</span>
+      <span>Total PYQs: 1</span>
+    </div>
+
+    <h2>Quick Access</h2>
+    <div class="cards">
+      <div class="card">
+        📄
+        <a href="notes.html?type=Notes">View Notes</a>
+      </div>
+      <div class="card">
+        📝
+        <a href="notes.html?type=PYQ">View PYQs</a>
+      </div>
+      <div class="card">
+        🖼️
+        <a href="notes.html?type=Image">View Images</a>
+      </div>
+      <div class="card">
+        ⬆️
+        <a href="upload.html">Upload Files</a>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

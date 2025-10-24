@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GEC Note Vault</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    nav {
+      background: #4a90e2;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 20px;
+    }
+
+    .card {
+      background: #e1ecf7;
+      padding: 50px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .btn {
+      display: block;
+      background: #4a90e2;
+      color: white;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: #357ab8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #e1ecf7;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <img src="logo.jpg" alt="Logo" style="width:30px; height:30px; vertical-align: middle;">
+  GEC Note Vault
+</h1>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="notes.html">Notes</a>
+      <a href="upload.html">Upload</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="card">
+      <h1>Welcome!</h1>
+      <p>Login to access all features or continue as guest.</p>
+
+      <!-- Login Button -->
+      <a class="btn" href="login.html">Login</a>
+
+      <hr style="margin:20px 0; border:0; border-top:1px solid #ccc;">
+
+      <!-- Guest Access Button -->
+      <a class="btn" href="dashboard.html">Continue as Guest</a>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 GEC Note Vault | All rights reserved
+  </footer>
+
+</body>
+</html>

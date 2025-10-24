@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Notes | GEC Note Vault</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <h1>
+  <img src="logo.jpg" alt="Logo" style="width:30px; height:30px; vertical-align: middle;">
+  GEC Note Vault
+</h1>
+
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="notes.html">View Notes</a>
+    </div>
+  </nav>
+
+  <div class="form-container">
+    <h2>Upload Notes</h2>
+    <input type="text" id="dept" placeholder="Department (e.g., CSE)">
+    <input type="text" id="subject" placeholder="Subject (e.g., DSA)">
+    <input type="file" id="fileUpload">
+    <textarea id="desc" placeholder="Short description..."></textarea>
+    <button id="uploadBtn">Upload</button>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
