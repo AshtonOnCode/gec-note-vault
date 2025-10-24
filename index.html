@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GEC Note Vault</title>
-  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -26,6 +26,14 @@
     nav h1 {
       margin: 0;
       font-size: 24px;
+      display: flex;
+      align-items: center;
+    }
+
+    nav h1 img {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
     }
 
     .nav-links a {
@@ -57,7 +65,7 @@
       width: 100%;
     }
 
-    h1 {
+    .card h1 {
       font-size: 32px;
       margin-bottom: 20px;
       color: #333;
@@ -91,10 +99,10 @@
 <body>
 
   <nav>
-    <img src="logo.jpg" alt="Logo" style="width:30px; height:30px; vertical-align: middle;">
-  GEC Note Vault
-</h1>
-
+    <h1>
+      <img src="logo.jpg" alt="Logo">
+      GEC Note Vault
+    </h1>
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="notes.html">Notes</a>
@@ -106,13 +114,8 @@
     <div class="card">
       <h1>Welcome!</h1>
       <p>Login to access all features or continue as guest.</p>
-
-      <!-- Login Button -->
       <a class="btn" href="login.html">Login</a>
-
       <hr style="margin:20px 0; border:0; border-top:1px solid #ccc;">
-
-      <!-- Guest Access Button -->
       <a class="btn" href="dashboard.html">Continue as Guest</a>
     </div>
   </main>

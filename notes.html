@@ -1,151 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>View Notes | GEC Note Vault</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body { font-family: Arial, sans-serif; background: #f5f7fa; margin:0; }
-    nav { background: #4a90e2; color: white; padding: 20px; display:flex; justify-content: space-between; flex-wrap: wrap; }
-    nav h1 { margin:0; }
-    .nav-links a { color:white; margin-left: 15px; text-decoration:none; font-weight:bold; }
-    main { max-width: 1000px; margin: auto; padding:30px; }
-    select { padding:8px; margin-right:15px; margin-bottom: 20px; border-radius:5px; }
-    .notes-list { margin-top: 20px; }
-    .note-item { background:#e1ecf7; padding:10px; margin-bottom:10px; border-radius:8px; display:flex; justify-content: space-between; align-items: center; }
-    .note-item a { color:#333; font-weight:bold; text-decoration:none; }
-    .note-item a:hover { color:#4a90e2; }
-    .images-grid { display:flex; flex-wrap:wrap; gap:20px; margin-top:10px; }
-    .images-grid img { width:300px; border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.2); }
-    .upvote-btn { padding:5px 10px; border:none; border-radius:5px; background:#4a90e2; color:white; cursor:pointer; margin-left:10px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Notes | GEC Note Vault</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    margin:0;
+    padding:0;
+  }
+
+  nav {
+    background: #4a90e2;
+    color: white;
+    padding: 15px 30px;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items:center;
+  }
+
+  nav h1 {
+    margin:0;
+    display:flex;
+    align-items:center;
+  }
+
+  nav h1 img {
+    width:30px; height:30px;
+    margin-right:10px;
+  }
+
+  .nav-links a {
+    color:white;
+    margin-left: 15px;
+    text-decoration:none;
+    font-weight:bold;
+  }
+
+  .nav-links a:hover { text-decoration: underline; }
+
+  main {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+  }
+
+  h2 {
+    color:#333;
+    text-align:center;
+    margin-bottom:20px;
+  }
+
+  .intro {
+    text-align:center;
+    margin-bottom:30px;
+    color:#555;
+  }
+
+  .filters {
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    justify-content:center;
+    margin-bottom:30px;
+  }
+
+  .filters select {
+    padding:8px;
+    border-radius:5px;
+    border:1px solid #ccc;
+  }
+
+  .notes-list { margin-top: 20px; display:grid; gap:15px; }
+
+  .note-item {
+    background:#e1ecf7;
+    padding:15px;
+    border-radius:10px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap:wrap;
+  }
+
+  .note-item a {
+    color:#333;
+    font-weight:bold;
+    text-decoration:none;
+  }
+
+  .note-item a:hover { color:#4a90e2; }
+
+  .images-grid {
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+    margin-top:10px;
+  }
+
+  .images-grid img {
+    width:300px;
+    border-radius:10px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .upvote-btn {
+    padding:5px 12px;
+    border:none;
+    border-radius:5px;
+    background:#4a90e2;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+    margin-left:10px;
+  }
+
+  .upvote-btn:hover {
+    background:#357ab8;
+    transform:scale(1.05);
+    transition:0.2s;
+  }
+
+  footer {
+    text-align:center;
+    padding:20px;
+    background:#e1ecf7;
+    color:#333;
+    margin-top:40px;
+  }
+
+  @media(max-width:600px){
+    .filters { flex-direction:column; align-items:center; }
+    .images-grid img { width:90%; }
+  }
+</style>
 </head>
 <body>
-  <nav>
-    <h1>
-      <img src="logo.jpg" alt="Logo" style="width:30px; height:30px; vertical-align: middle;">
-      GEC Note Vault
-    </h1>
-    <div class="nav-links">
-      <a href="dashboard.html">Dashboard</a>
-      <a href="upload.html">Upload</a>
-    </div>
-  </nav>
 
-  <main>
-    <h2>Filter Notes</h2>
+<nav>
+  <h1><img src="logo.jpg" alt="Logo">GEC Note Vault</h1>
+  <div class="nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="upload.html">Upload</a>
+  </div>
+</nav>
 
-    <div class="filters">
-      <select id="yearSelect">
-        <option value="">Select Year</option>
-      </select>
-      <select id="subjectSelect">
-        <option value="">Select Subject</option>
-      </select>
-      <select id="topicSelect">
-        <option value="">Select Topic</option>
-      </select>
-      <select id="typeSelect">
-        <option value="">Select Type</option>
-        <option value="Notes">Notes</option>
-        <option value="PYQ">PYQs</option>
-        <option value="Image">Images</option>
-      </select>
-    </div>
+<main>
+  <h2>Explore Your Notes</h2>
+  <p class="intro">Use the filters below to quickly find notes, images, or past year questions for your subjects.</p>
 
-    <div id="notesList" class="notes-list"></div>
-  </main>
+  <div class="filters">
+    <select id="yearSelect"><option value="">Select Year</option></select>
+    <select id="subjectSelect"><option value="">Select Subject</option></select>
+    <select id="topicSelect"><option value="">Select Topic</option></select>
+    <select id="typeSelect">
+      <option value="">Select Type</option>
+      <option value="Notes">Notes</option>
+      <option value="PYQ">PYQs</option>
+      <option value="Image">Images</option>
+    </select>
+  </div>
 
-  <script>
-    const notes = [
-      { year: "First Year", subject: "Programming", topic: "Decision Making and looping", type: "Notes", file: "pdfs/Decision making and Looping (1).pdf", upvotes: 0 },
-      { year: "First Year", subject: "Programming", topic: "Constant Variables & Data Type", type: "Notes", file: "pdfs/Constants Variables and Data Types.pdf", upvotes: 0 },
-      { year: "First Year", subject: "Programming", topic: "Decision Making and looping", type: "Images", file: "images/WhatsApp Image 2025-09-29 at 15.00.03_b4559f79.jpg", upvotes: 0 },
-      { year: "First Year", subject: "BEE", topic: "AC Circuits", type: "Notes", file: "images/WhatsApp Image 2025-10-21 at 11.42.50_5e42b95b.jpg", upvotes: 0 },
-      { year: "Second Year", subject: "Programming", topic: "Topic 1", type: "Notes", file: "", upvotes: 0 },
-      { year: "Second Year", subject: "BEE", topic: "Topic 1", type: "Notes", file: "", upvotes: 0 },
-      { year: "Third Year", subject: "CS", topic: "Topic 1", type: "Notes", file: "", upvotes: 0 },
-      { year: "Fourth Year", subject: "CS", topic: "Topic 1", type: "Notes", file: "", upvotes: 0 }
-    ];
+  <div id="notesList" class="notes-list"></div>
+</main>
 
-    const yearSelect = document.getElementById('yearSelect');
-    const subjectSelect = document.getElementById('subjectSelect');
-    const topicSelect = document.getElementById('topicSelect');
-    const typeSelect = document.getElementById('typeSelect');
-    const notesList = document.getElementById('notesList');
+<footer>&copy; 2025 GEC Note Vault | All rights reserved</footer>
 
-    const unique = (arr, key) => [...new Set(arr.map(item => item[key]))];
+<script>
+const notes = [
+  { year: "First Year", subject: "Programming", topic: "Decision Making and looping", type: "Notes", file: "pdfs/Decision making and Looping (1).pdf", upvotes: 0 },
+  { year: "First Year", subject: "Programming", topic: "Constant Variables & Data Type", type: "Notes", file: "pdfs/Constants Variables and Data Types.pdf", upvotes: 0 },
+  { year: "First Year", subject: "Programming", topic: "Decision Making and looping", type: "Images", file: "images/WhatsApp Image 2025-09-29 at 15.00.03_b4559f79.jpg", upvotes: 0 },
+  { year: "First Year", subject: "BEE", topic: "AC Circuits", type: "Notes", file: "images/WhatsApp Image 2025-10-21 at 11.42.50_5e42b95b.jpg", upvotes: 0 }
+];
 
-    const years = ["First Year", "Second Year", "Third Year", "Fourth Year"];
-    years.forEach(y => yearSelect.innerHTML += `<option value="${y}">${y}</option>`);
+const yearSelect = document.getElementById('yearSelect');
+const subjectSelect = document.getElementById('subjectSelect');
+const topicSelect = document.getElementById('topicSelect');
+const typeSelect = document.getElementById('typeSelect');
+const notesList = document.getElementById('notesList');
 
-    const updateSubjects = () => {
-      const selectedYear = yearSelect.value;
-      const subjects = unique(notes.filter(n => n.year === selectedYear), 'subject');
-      subjectSelect.innerHTML = '<option value="">Select Subject</option>';
-      subjects.forEach(s => subjectSelect.innerHTML += `<option value="${s}">${s}</option>`);
-      topicSelect.innerHTML = '<option value="">Select Topic</option>';
-      displayNotes();
-    };
+const unique = (arr,key) => [...new Set(arr.map(item=>item[key]))];
 
-    const updateTopics = () => {
-      const selectedYear = yearSelect.value;
-      const selectedSubject = subjectSelect.value;
-      const topics = unique(notes.filter(n => n.year === selectedYear && n.subject === selectedSubject), 'topic');
-      topicSelect.innerHTML = '<option value="">Select Topic</option>';
-      topics.forEach(t => topicSelect.innerHTML += `<option value="${t}">${t}</option>`);
-      displayNotes();
-    };
+const years = ["First Year","Second Year","Third Year","Fourth Year"];
+years.forEach(y => yearSelect.innerHTML += `<option value="${y}">${y}</option>`);
 
-    function displayNotes() {
-      const filtered = notes.filter(n =>
-        (yearSelect.value === "" || n.year === yearSelect.value) &&
-        (subjectSelect.value === "" || n.subject === subjectSelect.value) &&
-        (topicSelect.value === "" || n.topic === topicSelect.value) &&
-        (typeSelect.value === "" || n.type === typeSelect.value)
-      );
+const updateSubjects = () => {
+  const selectedYear = yearSelect.value;
+  const subjects = unique(notes.filter(n=>n.year===selectedYear),'subject');
+  subjectSelect.innerHTML='<option value="">Select Subject</option>';
+  subjects.forEach(s => subjectSelect.innerHTML += `<option value="${s}">${s}</option>`);
+  topicSelect.innerHTML='<option value="">Select Topic</option>';
+  displayNotes();
+};
 
-      filtered.sort((a, b) => b.upvotes - a.upvotes);
+const updateTopics = () => {
+  const selectedYear = yearSelect.value;
+  const selectedSubject = subjectSelect.value;
+  const topics = unique(notes.filter(n=>n.year===selectedYear && n.subject===selectedSubject),'topic');
+  topicSelect.innerHTML='<option value="">Select Topic</option>';
+  topics.forEach(t=> topicSelect.innerHTML+=`<option value="${t}">${t}</option>`);
+  displayNotes();
+};
 
-      notesList.innerHTML = '';
-      filtered.forEach(n => {
-        if(n.type === "Image"){
-          const imgDiv = document.createElement('div');
-          imgDiv.className = 'images-grid';
-          const img = document.createElement('img');
-          img.src = n.file;
-          img.alt = n.topic;
-          imgDiv.appendChild(img);
-          notesList.appendChild(imgDiv);
-        } else {
-          const div = document.createElement('div');
-          div.className = 'note-item';
-          div.innerHTML = `
-            <div>
-              <a href="${n.file}" target="_blank">${n.topic} (${n.type})</a>
-            </div>
-            <div>
-              <span>${n.upvotes} 👍</span>
-              <button class="upvote-btn" onclick="upvote('${n.topic}')">Upvote</button>
-            </div>
-          `;
-          notesList.appendChild(div);
-        }
-      });
+function displayNotes(){
+  const filtered = notes.filter(n =>
+    (yearSelect.value===""||n.year===yearSelect.value) &&
+    (subjectSelect.value===""||n.subject===subjectSelect.value) &&
+    (topicSelect.value===""||n.topic===topicSelect.value) &&
+    (typeSelect.value===""||n.type===typeSelect.value)
+  );
+
+  filtered.sort((a,b)=>b.upvotes - a.upvotes);
+  notesList.innerHTML='';
+
+  if(filtered.length===0){
+    notesList.innerHTML='<p style="text-align:center; color:#555;">No notes match your filter criteria.</p>';
+    return;
+  }
+
+  filtered.forEach(n=>{
+    if(n.type==="Image"){
+      const imgDiv = document.createElement('div');
+      imgDiv.className='images-grid';
+      const img=document.createElement('img');
+      img.src=n.file;
+      img.alt=n.topic;
+      imgDiv.appendChild(img);
+      notesList.appendChild(imgDiv);
+    } else {
+      const div=document.createElement('div');
+      div.className='note-item';
+      div.innerHTML=`
+        <div>
+          <a href="${n.file}" target="_blank">${n.topic} (${n.type})</a>
+        </div>
+        <div>
+          <span>${n.upvotes} 👍</span>
+          <button class="upvote-btn" onclick="upvote('${n.topic}')">Upvote</button>
+        </div>
+      `;
+      notesList.appendChild(div);
     }
+  });
+}
 
-    function upvote(topic) {
-      const note = notes.find(n => n.topic === topic);
-      if(note) note.upvotes += 1;
-      displayNotes();
-    }
+function upvote(topic){
+  const note = notes.find(n=>n.topic===topic);
+  if(note) note.upvotes+=1;
+  displayNotes();
+}
 
-    yearSelect.addEventListener('change', updateSubjects);
-    subjectSelect.addEventListener('change', updateTopics);
-    topicSelect.addEventListener('change', displayNotes);
-    typeSelect.addEventListener('change', displayNotes);
+yearSelect.addEventListener('change',updateSubjects);
+subjectSelect.addEventListener('change',updateTopics);
+topicSelect.addEventListener('change',displayNotes);
+typeSelect.addEventListener('change',displayNotes);
 
-    displayNotes();
-  </script>
+displayNotes();
+</script>
 </body>
 </html>
