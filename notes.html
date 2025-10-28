@@ -1,266 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>View Notes | GEC Note Vault</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5f7fa;
-    margin:0;
-    padding:0;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Notes | GEC Note Vault</title>
+  <style>
+    * { box-sizing: border-box; margin:0; padding:0; font-family: Arial, sans-serif; }
+    body { background:#f5f7fa; display:flex; flex-direction:column; min-height:100vh; }
 
-  nav {
-    background: #4a90e2;
-    color: white;
-    padding: 15px 30px;
-    display:flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items:center;
-  }
+    nav {
+      background:#4a90e2;
+      color:white;
+      padding:15px 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    nav h1 { display:flex; align-items:center; font-size:24px; }
+    nav h1 img { width:35px; height:35px; margin-right:10px; }
+    .nav-links a { color:white; text-decoration:none; margin-left:15px; font-weight:bold; }
+    .nav-links a:hover { text-decoration:underline; }
 
-  nav h1 {
-    margin:0;
-    display:flex;
-    align-items:center;
-  }
+    main { flex:1; padding:30px 20px; }
 
-  nav h1 img {
-    width:30px; height:30px;
-    margin-right:10px;
-  }
+    .filter-row {
+      display:flex;
+      gap:15px;
+      justify-content:center;
+      margin-bottom:25px;
+      flex-wrap:wrap;
+    }
+    select {
+      padding:10px 15px;
+      border-radius:8px;
+      border:1px solid #ccc;
+      font-size:16px;
+    }
+    button {
+      padding:10px 20px;
+      border:none;
+      border-radius:8px;
+      background:#4a90e2;
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+      transition: background 0.2s;
+    }
+    button:hover { background:#357ab8; }
 
-  .nav-links a {
-    color:white;
-    margin-left: 15px;
-    text-decoration:none;
-    font-weight:bold;
-  }
+    .notes-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap:20px;
+    }
+    .note-card {
+      background:white;
+      border-radius:10px;
+      padding:20px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .note-card:hover { transform:scale(1.02); }
+    .note-card h3 { color:#4a90e2; margin-bottom:10px; }
+    .note-card p { margin:5px 0; font-size:15px; color:#333; }
+    .note-card a {
+      display:inline-block;
+      margin-top:10px;
+      text-decoration:none;
+      color:white;
+      background:#4a90e2;
+      padding:8px 12px;
+      border-radius:6px;
+    }
+    .note-card a:hover { background:#357ab8; }
 
-  .nav-links a:hover { text-decoration: underline; }
+    footer { text-align:center; padding:20px; background:#e1ecf7; color:#333; font-size:14px; margin-top:40px; }
 
-  main {
-    max-width: 1000px;
-    margin: auto;
-    padding: 40px 20px;
-  }
-
-  h2 {
-    color:#333;
-    text-align:center;
-    margin-bottom:20px;
-  }
-
-  .intro {
-    text-align:center;
-    margin-bottom:30px;
-    color:#555;
-  }
-
-  .filters {
-    display:flex;
-    flex-wrap:wrap;
-    gap:15px;
-    justify-content:center;
-    margin-bottom:30px;
-  }
-
-  .filters select {
-    padding:8px;
-    border-radius:5px;
-    border:1px solid #ccc;
-  }
-
-  .notes-list { margin-top: 20px; display:grid; gap:15px; }
-
-  .note-item {
-    background:#e1ecf7;
-    padding:15px;
-    border-radius:10px;
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap:wrap;
-  }
-
-  .note-item a {
-    color:#333;
-    font-weight:bold;
-    text-decoration:none;
-  }
-
-  .note-item a:hover { color:#4a90e2; }
-
-  .images-grid {
-    display:flex;
-    flex-wrap:wrap;
-    gap:20px;
-    justify-content:center;
-    margin-top:10px;
-  }
-
-  .images-grid img {
-    width:300px;
-    border-radius:10px;
-    box-shadow:0 4px 8px rgba(0,0,0,0.2);
-  }
-
-  .upvote-btn {
-    padding:5px 12px;
-    border:none;
-    border-radius:5px;
-    background:#4a90e2;
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
-    margin-left:10px;
-  }
-
-  .upvote-btn:hover {
-    background:#357ab8;
-    transform:scale(1.05);
-    transition:0.2s;
-  }
-
-  footer {
-    text-align:center;
-    padding:20px;
-    background:#e1ecf7;
-    color:#333;
-    margin-top:40px;
-  }
-
-  @media(max-width:600px){
-    .filters { flex-direction:column; align-items:center; }
-    .images-grid img { width:90%; }
-  }
-</style>
+    @media(max-width:480px){
+      .filter-row { flex-direction:column; align-items:center; }
+    }
+  </style>
 </head>
 <body>
+  <nav>
+    <h1><img src="logo.jpg" alt="Logo">GEC Note Vault</h1>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="upload.html">Upload</a>
+    </div>
+  </nav>
 
-<nav>
-  <h1><img src="logo.jpg" alt="Logo">GEC Note Vault</h1>
-  <div class="nav-links">
-    <a href="dashboard.html">Dashboard</a>
-    <a href="upload.html">Upload</a>
-  </div>
-</nav>
+  <main>
+    <div class="filter-row">
+      <select id="filterDept">
+        <option value="">All Departments</option>
+        <option value="CSE">CSE</option>
+        <option value="IT">IT</option>
+        <option value="ENTC">ENTC</option>
+      </select>
 
-<main>
-  <h2>Explore Your Notes</h2>
-  <p class="intro">Use the filters below to quickly find notes, images, or past year questions for your subjects.</p>
+      <select id="filterYear">
+        <option value="">All Years</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+        <option value="4th Year">4th Year</option>
+      </select>
 
-  <div class="filters">
-    <select id="yearSelect"><option value="">Select Year</option></select>
-    <select id="subjectSelect"><option value="">Select Subject</option></select>
-    <select id="topicSelect"><option value="">Select Topic</option></select>
-    <select id="typeSelect">
-      <option value="">Select Type</option>
-      <option value="Notes">Notes</option>
-      <option value="PYQ">PYQs</option>
-      <option value="Image">Images</option>
-    </select>
-  </div>
+      <select id="filterType">
+        <option value="">All File Types</option>
+        <option value="pdf">PDF</option>
+        <option value="image">Image</option>
+        <option value="pyq">PYQ</option>
+      </select>
 
-  <div id="notesList" class="notes-list"></div>
-</main>
+      <button id="applyFilters">Apply Filters</button>
+    </div>
 
-<footer>&copy; 2025 GEC Note Vault | All rights reserved</footer>
+    <div class="notes-grid" id="notesGrid">
+      <p>Loading notes...</p>
+    </div>
+  </main>
 
-<script>
-const notes = [
-  { year: "First Year", subject: "Programming", topic: "Decision Making and looping", type: "Notes", file: "pdfs/Decision making and Looping (1).pdf", upvotes: 0 },
-  { year: "First Year", subject: "Programming", topic: "Constant Variables & Data Type", type: "Notes", file: "pdfs/Constants Variables and Data Types.pdf", upvotes: 0 },
-  { year: "First Year", subject: "Programming", topic: "Decision Making and looping", type: "Images", file: "images/WhatsApp Image 2025-09-29 at 15.00.03_b4559f79.jpg", upvotes: 0 },
-  { year: "First Year", subject: "BEE", topic: "AC Circuits", type: "Notes", file: "images/WhatsApp Image 2025-10-21 at 11.42.50_5e42b95b.jpg", upvotes: 0 }
-];
+  <footer>
+    &copy; 2025 GEC Note Vault | All rights reserved
+  </footer>
 
-const yearSelect = document.getElementById('yearSelect');
-const subjectSelect = document.getElementById('subjectSelect');
-const topicSelect = document.getElementById('topicSelect');
-const typeSelect = document.getElementById('typeSelect');
-const notesList = document.getElementById('notesList');
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js";
 
-const unique = (arr,key) => [...new Set(arr.map(item=>item[key]))];
+    const SUPABASE_URL = "https://zfiuzdmionjolmbedvpk.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmaXV6ZG1pb25qb2xtYmVkdnBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1Nzk2MzUsImV4cCI6MjA3NzE1NTYzNX0.d2fmy2Fzx26YCJc9tRCykDWrgJHXlzSpXwlnaUj1KrU";
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-const years = ["First Year","Second Year","Third Year","Fourth Year"];
-years.forEach(y => yearSelect.innerHTML += `<option value="${y}">${y}</option>`);
+    const notesGrid = document.getElementById("notesGrid");
+    const filterDept = document.getElementById("filterDept");
+    const filterYear = document.getElementById("filterYear");
+    const filterType = document.getElementById("filterType");
+    const applyFilters = document.getElementById("applyFilters");
 
-const updateSubjects = () => {
-  const selectedYear = yearSelect.value;
-  const subjects = unique(notes.filter(n=>n.year===selectedYear),'subject');
-  subjectSelect.innerHTML='<option value="">Select Subject</option>';
-  subjects.forEach(s => subjectSelect.innerHTML += `<option value="${s}">${s}</option>`);
-  topicSelect.innerHTML='<option value="">Select Topic</option>';
-  displayNotes();
-};
+    async function fetchNotes() {
+      let query = supabase.from("notes").select("*").order("id", { ascending: false });
 
-const updateTopics = () => {
-  const selectedYear = yearSelect.value;
-  const selectedSubject = subjectSelect.value;
-  const topics = unique(notes.filter(n=>n.year===selectedYear && n.subject===selectedSubject),'topic');
-  topicSelect.innerHTML='<option value="">Select Topic</option>';
-  topics.forEach(t=> topicSelect.innerHTML+=`<option value="${t}">${t}</option>`);
-  displayNotes();
-};
+      if (filterDept.value) query = query.eq("department", filterDept.value);
+      if (filterYear.value) query = query.eq("year", filterYear.value);
+      if (filterType.value) query = query.eq("file_type", filterType.value);
 
-function displayNotes(){
-  const filtered = notes.filter(n =>
-    (yearSelect.value===""||n.year===yearSelect.value) &&
-    (subjectSelect.value===""||n.subject===subjectSelect.value) &&
-    (topicSelect.value===""||n.topic===topicSelect.value) &&
-    (typeSelect.value===""||n.type===typeSelect.value)
-  );
+      const { data, error } = await query;
 
-  filtered.sort((a,b)=>b.upvotes - a.upvotes);
-  notesList.innerHTML='';
+      if (error) {
+        notesGrid.innerHTML = `<p>Error loading notes: ${error.message}</p>`;
+        return;
+      }
 
-  if(filtered.length===0){
-    notesList.innerHTML='<p style="text-align:center; color:#555;">No notes match your filter criteria.</p>';
-    return;
-  }
+      if (!data || data.length === 0) {
+        notesGrid.innerHTML = "<p>No notes found for selected filters.</p>";
+        return;
+      }
 
-  filtered.forEach(n=>{
-    if(n.type==="Image"){
-      const imgDiv = document.createElement('div');
-      imgDiv.className='images-grid';
-      const img=document.createElement('img');
-      img.src=n.file;
-      img.alt=n.topic;
-      imgDiv.appendChild(img);
-      notesList.appendChild(imgDiv);
-    } else {
-      const div=document.createElement('div');
-      div.className='note-item';
-      div.innerHTML=`
-        <div>
-          <a href="${n.file}" target="_blank">${n.topic} (${n.type})</a>
+      notesGrid.innerHTML = data.map(note => `
+        <div class="note-card">
+          <h3>${note.subject}</h3>
+          <p><b>Topic:</b> ${note.topic}</p>
+          <p><b>Department:</b> ${note.department}</p>
+          <p><b>Year:</b> ${note.year}</p>
+          <p><b>Type:</b> ${note.file_type}</p>
+          <p>${note.description}</p>
+          <a href="${note.file_url}" target="_blank">📂 View File</a>
         </div>
-        <div>
-          <span>${n.upvotes} 👍</span>
-          <button class="upvote-btn" onclick="upvote('${n.topic}')">Upvote</button>
-        </div>
-      `;
-      notesList.appendChild(div);
+      `).join("");
     }
-  });
-}
 
-function upvote(topic){
-  const note = notes.find(n=>n.topic===topic);
-  if(note) note.upvotes+=1;
-  displayNotes();
-}
+    applyFilters.addEventListener("click", fetchNotes);
 
-yearSelect.addEventListener('change',updateSubjects);
-subjectSelect.addEventListener('change',updateTopics);
-topicSelect.addEventListener('change',displayNotes);
-typeSelect.addEventListener('change',displayNotes);
-
-displayNotes();
-</script>
+    fetchNotes();
+  </script>
 </body>
 </html>

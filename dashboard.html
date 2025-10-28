@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -15,128 +16,128 @@
     flex-direction: column;
   }
 
-  nav {
-    background: #4a90e2;
-    color: white;
-    padding: 20px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+nav {
+background: #4a90e2;
+color: white;
+padding: 20px 30px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+}
 
-  nav h1 {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    font-size: 24px;
-  }
+nav h1 {
+display: flex;
+align-items: center;
+margin: 0;
+font-size: 24px;
+}
 
-  nav h1 img {
-    width: 35px;
-    height: 35px;
-    margin-right: 10px;
-  }
+nav h1 img {
+width: 35px;
+height: 35px;
+margin-right: 10px;
+}
 
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
-    transition: 0.3s;
-  }
+.nav-links a {
+color: white;
+text-decoration: none;
+margin-left: 20px;
+font-weight: bold;
+transition: 0.3s;
+}
 
-  .nav-links a:hover {
-    text-decoration: underline;
-    color: #ffdd00;
-  }
+.nav-links a:hover {
+text-decoration: underline;
+color: #ffdd00;
+}
 
-  main {
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 0 20px;
-    flex: 1;
-  }
+main {
+max-width: 1200px;
+margin: 30px auto;
+padding: 0 20px;
+flex: 1;
+}
 
-  h2 {
-    color: #333;
-    margin-bottom: 20px;
-  }
+h2 {
+color: #333;
+margin-bottom: 20px;
+}
 
-  .overview {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 40px;
-  }
+.overview {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+margin-bottom: 40px;
+}
 
-  .overview span {
-    background: #e1ecf7;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-    color: #4a90e2;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    flex: 1 1 150px;
-    text-align: center;
-  }
+.overview span {
+background: #e1ecf7;
+padding: 12px 20px;
+border-radius: 10px;
+font-weight: bold;
+color: #4a90e2;
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+flex: 1 1 150px;
+text-align: center;
+}
 
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
+.cards {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 20px;
+}
 
-  .card {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: pointer;
-  }
+.card {
+background: #ffffff;
+padding: 25px;
+border-radius: 15px;
+text-align: center;
+box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+transition: transform 0.2s, box-shadow 0.2s;
+cursor: pointer;
+}
 
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  }
+.card:hover {
+transform: translateY(-5px);
+box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
 
-  .card-icon {
-    font-size: 40px;
-    background: #4a90e2;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 15px;
-  }
+.card-icon {
+font-size: 40px;
+background: #4a90e2;
+color: white;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 15px;
+}
 
-  .card a {
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    font-weight: bold;
-    display: block;
-    margin-top: 5px;
-  }
+.card a {
+text-decoration: none;
+color: #333;
+font-size: 18px;
+font-weight: bold;
+display: block;
+margin-top: 5px;
+}
 
-  @media(max-width:480px){
-    .overview {
-      flex-direction: column;
-    }
-    nav {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .nav-links {
-      margin-top: 10px;
-    }
-  }
-</style>
+@media(max-width:480px){
+.overview {
+flex-direction: column;
+}
+nav {
+flex-direction: column;
+align-items: flex-start;
+}
+.nav-links {
+margin-top: 10px;
+}
+} </style>
+
 </head>
 <body>
 
@@ -154,9 +155,9 @@
 <main>
   <h2>Dashboard Overview</h2>
   <div class="overview">
-    <span>Total PDFs: 2</span>
-    <span>Total Images: 2</span>
-    <span>Total PYQs: 1</span>
+    <span id="pdfCount">Total PDFs: ...</span>
+    <span id="imageCount">Total Images: ...</span>
+    <span id="pyqCount">Total PYQs: ...</span>
   </div>
 
   <h2>Quick Access</h2>
@@ -183,6 +184,42 @@
 <footer style="text-align:center; padding:20px; background:#e1ecf7; color:#333;">
   &copy; 2025 GEC Note Vault | All rights reserved
 </footer>
+
+<script type="module">
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+  const SUPABASE_URL = "https://zfiuzdmionjolmbedvpk.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmaXV6ZG1pb25qb2xtYmVkdnBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1Nzk2MzUsImV4cCI6MjA3NzE1NTYzNX0.d2fmy2Fzx26YCJc9tRCykDWrgJHXlzSpXwlnaUj1KrU";
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  async function getFileCount(bucketName) {
+    const { data, error } = await supabase.storage.from(bucketName).list("", { limit: 1000 });
+    if (error) {
+      console.error(`Error fetching ${bucketName}:`, error);
+      return 0;
+    }
+    return data ? data.length : 0;
+  }
+
+  async function loadDashboardCounts() {
+    document.getElementById("pdfCount").textContent = "Loading PDFs...";
+    document.getElementById("imageCount").textContent = "Loading Images...";
+    document.getElementById("pyqCount").textContent = "Loading PYQs...";
+
+    const [pdfs, images, pyqs] = await Promise.all([
+      getFileCount("pdfs"),
+      getFileCount("images"),
+      getFileCount("pyqs")
+    ]);
+
+    document.getElementById("pdfCount").textContent = `Total PDFs: ${pdfs}`;
+    document.getElementById("imageCount").textContent = `Total Images: ${images}`;
+    document.getElementById("pyqCount").textContent = `Total PYQs: ${pyqs}`;
+  }
+
+  loadDashboardCounts();
+</script>
 
 </body>
 </html>

@@ -1,86 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Upload Notes | GEC Note Vault</title>
-<style>
-  /* Reset */
-  * { box-sizing: border-box; margin:0; padding:0; font-family: Arial, sans-serif; }
-  body { background:#f5f7fa; display:flex; flex-direction:column; min-height:100vh; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Notes | GEC Note Vault</title>
+  <style>
+    * { box-sizing: border-box; margin:0; padding:0; font-family: Arial, sans-serif; }
+    body { background:#f5f7fa; display:flex; flex-direction:column; min-height:100vh; }
 
-  /* Navigation */
-  nav {
-    background:#4a90e2;
-    color:white;
-    padding:15px 30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
-  nav h1 { display:flex; align-items:center; font-size:24px; }
-  nav h1 img { width:35px; height:35px; margin-right:10px; }
-  .nav-links a { color:white; text-decoration:none; margin-left:15px; font-weight:bold; }
-  .nav-links a:hover { text-decoration:underline; }
+    nav {
+      background:#4a90e2;
+      color:white;
+      padding:15px 30px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    nav h1 { display:flex; align-items:center; font-size:24px; }
+    nav h1 img { width:35px; height:35px; margin-right:10px; }
+    .nav-links a { color:white; text-decoration:none; margin-left:15px; font-weight:bold; }
+    .nav-links a:hover { text-decoration:underline; }
 
-  /* Form container */
-  main { flex:1; display:flex; justify-content:center; align-items:center; padding:40px 20px; }
-  .upload-card {
-    background:#e1ecf7; padding:50px 40px; border-radius:12px;
-    box-shadow:0 6px 15px rgba(0,0,0,0.2); max-width:450px; width:100%; text-align:center;
-  }
-  .upload-card h2 { font-size:28px; margin-bottom:25px; color:#333; }
+    main { flex:1; display:flex; justify-content:center; align-items:center; padding:40px 20px; }
+    .upload-card {
+      background:#e1ecf7; padding:50px 40px; border-radius:12px;
+      box-shadow:0 6px 15px rgba(0,0,0,0.2); max-width:450px; width:100%; text-align:center;
+    }
+    .upload-card h2 { font-size:28px; margin-bottom:25px; color:#333; }
+    .upload-card input, .upload-card select, .upload-card textarea {
+      width:100%; padding:12px 15px; margin:10px 0;
+      border-radius:8px; border:1px solid #ccc; font-size:16px;
+    }
+    .upload-card textarea { resize: vertical; height:100px; }
 
-  .upload-card input[type="text"],
-  .upload-card input[type="file"],
-  .upload-card textarea {
-    width:100%; padding:12px 15px; margin:10px 0; border-radius:8px; border:1px solid #ccc; font-size:16px;
-  }
+    .upload-card button {
+      width:100%; padding:15px; margin-top:15px; border:none; border-radius:10px;
+      background:#4a90e2; color:white; font-size:18px; font-weight:bold; cursor:pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .upload-card button:hover { transform:scale(1.05); background:#357ab8; }
 
-  .upload-card textarea { resize: vertical; height:100px; }
+    #status { margin-top:15px; font-size:15px; color:#333; font-weight:bold; }
 
-  .upload-card button {
-    width:100%; padding:15px; margin-top:15px; border:none; border-radius:10px;
-    background:#4a90e2; color:white; font-size:18px; font-weight:bold; cursor:pointer;
-    transition: transform 0.2s, background 0.2s;
-  }
-  .upload-card button:hover { transform:scale(1.05); background:#357ab8; }
+    footer { text-align:center; padding:20px; background:#e1ecf7; color:#333; font-size:14px; margin-top:40px; }
 
-  footer { text-align:center; padding:20px; background:#e1ecf7; color:#333; font-size:14px; margin-top:40px; }
-
-  @media(max-width:480px){
-    .upload-card { padding:30px 20px; }
-    nav h1 { font-size:20px; }
-  }
-</style>
+    @media(max-width:480px){
+      .upload-card { padding:30px 20px; }
+      nav h1 { font-size:20px; }
+    }
+  </style>
 </head>
 <body>
+  <nav>
+    <h1><img src="logo.jpg" alt="Logo">GEC Note Vault</h1>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="notes.html">View Notes</a>
+    </div>
+  </nav>
 
-<!-- Navigation -->
-<nav>
-  <h1><img src="logo.jpg" alt="Logo">GEC Note Vault</h1>
-  <div class="nav-links">
-    <a href="dashboard.html">Dashboard</a>
-    <a href="notes.html">View Notes</a>
-  </div>
-</nav>
+  <main>
+    <div class="upload-card">
+      <h2>Upload Notes</h2>
+      <input type="text" id="dept" placeholder="Department (e.g., CSE)" required>
+      <select id="year" required>
+        <option value="">Select Year</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+        <option value="4th Year">4th Year</option>
+      </select>
+      <input type="text" id="subject" placeholder="Subject (e.g., DSA)" required>
+      <input type="text" id="topic" placeholder="Topic (e.g., Stacks)" required>
+      <textarea id="desc" placeholder="Short description..." required></textarea>
 
-<!-- Main Upload Form -->
-<main>
-  <div class="upload-card">
-    <h2>Upload Notes</h2>
-    <input type="text" id="dept" placeholder="Department (e.g., CSE)" required>
-    <input type="text" id="subject" placeholder="Subject (e.g., DSA)" required>
-    <input type="file" id="fileUpload" required>
-    <textarea id="desc" placeholder="Short description..." required></textarea>
-    <button id="uploadBtn">Upload</button>
-  </div>
-</main>
+      <select id="fileType" required>
+        <option value="">Select File Type</option>
+        <option value="pdf">PDF</option>
+        <option value="image">Image</option>
+        <option value="pyq">PYQ</option>
+      </select>
 
-<footer>
-  &copy; 2025 GEC Note Vault | All rights reserved
-</footer>
+      <input type="file" id="fileUpload" required>
+      <button id="uploadBtn">Upload</button>
+      <p id="status"></p>
+    </div>
+  </main>
 
-<script type="module" src="script.js"></script>
+  <footer>
+    &copy; 2025 GEC Note Vault | All rights reserved
+  </footer>
+
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js";
+
+    const SUPABASE_URL ="https://zfiuzdmionjolmbedvpk.supabase.co";
+    const SUPABASE_ANON_KEY ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmaXV6ZG1pb25qb2xtYmVkdnBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1Nzk2MzUsImV4cCI6MjA3NzE1NTYzNX0.d2fmy2Fzx26YCJc9tRCykDWrgJHXlzSpXwlnaUj1KrU";
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    const uploadBtn = document.getElementById('uploadBtn');
+    const statusText = document.getElementById('status');
+
+    uploadBtn.addEventListener('click', async () => {
+      const dept = document.getElementById('dept').value.trim();
+      const year = document.getElementById('year').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const topic = document.getElementById('topic').value.trim();
+      const desc = document.getElementById('desc').value.trim();
+      const fileType = document.getElementById('fileType').value.trim();
+      const file = document.getElementById('fileUpload').files[0];
+
+      if (!dept || !year || !subject || !topic || !desc || !fileType || !file) {
+        statusText.textContent = "⚠️ Please fill all fields and select a file.";
+        return;
+      }
+
+      statusText.textContent = "⏳ Uploading... Please wait.";
+
+      const filePath = `${dept}/${year}/${fileType}/${Date.now()}_${file.name}`;
+
+      const { data: uploadData, error: uploadError } = await supabase
+        .storage.from('notes')
+        .upload(filePath, file);
+
+      if (uploadError) {
+        statusText.textContent = "❌ Upload failed: " + uploadError.message;
+        return;
+      }
+
+      const { data: { publicUrl } } = supabase.storage.from('notes').getPublicUrl(filePath);
+
+      const { error: insertError } = await supabase
+        .from('notes')
+        .insert([{ department: dept, year, subject, topic, description: desc, file_type: fileType, file_url: publicUrl }]);
+
+      if (insertError) {
+        statusText.textContent = "⚠️ File uploaded, but metadata save failed.";
+        console.error(insertError);
+      } else {
+        statusText.textContent = "✅ Upload successful!";
+        document.querySelectorAll('input, textarea, select').forEach(el => el.value = '');
+      }
+    });
+  </script>
 </body>
 </html>

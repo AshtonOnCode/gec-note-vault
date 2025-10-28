@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login | GEC Note Vault</title>
   <style>
-    /* Reset */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -20,7 +19,7 @@
       min-height: 100vh;
     }
 
-    /* Navigation */
+    /* Navbar */
     nav {
       background: #4a90e2;
       color: white;
@@ -53,7 +52,7 @@
       text-decoration: underline;
     }
 
-    /* Main container */
+    /* Login Card */
     main {
       flex: 1;
       display: flex;
@@ -66,7 +65,7 @@
       background: #e1ecf7;
       padding: 50px 40px;
       border-radius: 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
       max-width: 400px;
       width: 100%;
       text-align: center;
@@ -130,11 +129,10 @@
       font-size: 14px;
     }
 
-    @media(max-width: 480px) {
+    @media (max-width: 480px) {
       .login-card {
         padding: 30px 20px;
       }
-
       nav h1 {
         font-size: 20px;
       }
@@ -142,11 +140,9 @@
   </style>
 </head>
 <body>
-
-  <!-- Navigation -->
   <nav>
     <h1>
-      <img src="logo.jpg" alt="Logo">
+      <img src="logo.jpg" alt="GEC Note Vault Logo" />
       GEC Note Vault
     </h1>
     <div class="nav-links">
@@ -155,12 +151,11 @@
     </div>
   </nav>
 
-  <!-- Main Login Form -->
   <main>
     <div class="login-card">
       <h2>Login</h2>
-      <input type="email" id="loginEmail" placeholder="Email" required>
-      <input type="password" id="loginPassword" placeholder="Password" required>
+      <input type="email" id="loginEmail" placeholder="Email" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
       <button id="loginBtn">Login</button>
 
       <div class="links">
@@ -168,17 +163,46 @@
         <a href="signup.html">Create Account</a>
       </div>
 
-      <p style="margin-top:20px; font-size:14px; color:#555;">
-        Or continue as guest: <a href="dashboard.html" style="color:#4a90e2; text-decoration:none;">Guest Access</a>
+      <p style="margin-top: 20px; font-size: 14px; color: #555;">
+        Or continue as guest:
+        <a href="dashboard.html" style="color: #4a90e2; text-decoration: none;">Guest Access</a>
       </p>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer>
     &copy; 2025 GEC Note Vault | All rights reserved
   </footer>
 
-  <script type="module" src="script.js"></script>
+  <script type="module">
+    import { createClient } from "https://esm.sh/@supabase/supabase-js";
+
+    const supabaseUrl = "https://zfiuzdmionjolmbedvpk.supabase.co";
+    const supabaseKey =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmaXV6ZG1pb25qb2xtYmVkdnBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1Nzk2MzUsImV4cCI6MjA3NzE1NTYzNX0.d2fmy2Fzx26YCJc9tRCykDWrgJHXlzSpXwlnaUj1KrU";
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    document.getElementById("loginBtn").addEventListener("click", async () => {
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value.trim();
+
+      if (!email || !password) {
+        alert("Please fill all fields!");
+        return;
+      }
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        alert("Invalid credentials or user not found!");
+      } else {
+        alert("Login successful!");
+        window.location.href = "dashboard.html";
+      }
+    });
+  </script>
 </body>
 </html>
