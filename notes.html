@@ -7,7 +7,6 @@
   <style>
     * { box-sizing: border-box; margin:0; padding:0; font-family: Arial, sans-serif; }
     body { background:#f5f7fa; display:flex; flex-direction:column; min-height:100vh; }
-
     nav {
       background:#4a90e2;
       color:white;
@@ -20,9 +19,7 @@
     nav h1 img { width:35px; height:35px; margin-right:10px; }
     .nav-links a { color:white; text-decoration:none; margin-left:15px; font-weight:bold; }
     .nav-links a:hover { text-decoration:underline; }
-
     main { flex:1; padding:30px 20px; }
-
     .filter-row {
       display:flex;
       gap:15px;
@@ -47,7 +44,6 @@
       transition: background 0.2s;
     }
     button:hover { background:#357ab8; }
-
     .notes-grid {
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -73,9 +69,7 @@
       border-radius:6px;
     }
     .note-card a:hover { background:#357ab8; }
-
     footer { text-align:center; padding:20px; background:#e1ecf7; color:#333; font-size:14px; margin-top:40px; }
-
     @media(max-width:480px){
       .filter-row { flex-direction:column; align-items:center; }
     }
@@ -89,16 +83,18 @@
       <a href="upload.html">Upload</a>
     </div>
   </nav>
-
   <main>
     <div class="filter-row">
       <select id="filterDept">
         <option value="">All Departments</option>
         <option value="CSE">CSE</option>
         <option value="IT">IT</option>
-        <option value="ENTC">ENTC</option>
+        <option value="ETC">ETC</option>
+        <option value="EEE">EEE</option>
+        <option value="ME">ME</option>
+        <option value="CI">CI</option>
+        <option value="VLSI">VLSI</option>
       </select>
-
       <select id="filterYear">
         <option value="">All Years</option>
         <option value="1st Year">1st Year</option>
@@ -106,33 +102,26 @@
         <option value="3rd Year">3rd Year</option>
         <option value="4th Year">4th Year</option>
       </select>
-
       <select id="filterType">
         <option value="">All File Types</option>
         <option value="pdf">PDF</option>
         <option value="image">Image</option>
         <option value="pyq">PYQ</option>
       </select>
-
       <button id="applyFilters">Apply Filters</button>
     </div>
-
     <div class="notes-grid" id="notesGrid">
       <p>Loading notes...</p>
     </div>
   </main>
-
   <footer>
     &copy; 2025 GEC Note Vault | All rights reserved
   </footer>
-
   <script type="module">
     import { createClient } from "https://esm.sh/@supabase/supabase-js";
-
     const SUPABASE_URL = "https://zfiuzdmionjolmbedvpk.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpmaXV6ZG1pb25qb2xtYmVkdnBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE1Nzk2MzUsImV4cCI6MjA3NzE1NTYzNX0.d2fmy2Fzx26YCJc9tRCykDWrgJHXlzSpXwlnaUj1KrU";
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
     const notesGrid = document.getElementById("notesGrid");
     const filterDept = document.getElementById("filterDept");
     const filterYear = document.getElementById("filterYear");
@@ -141,18 +130,15 @@
 
     async function fetchNotes() {
       let query = supabase.from("notes").select("*").order("id", { ascending: false });
-
       if (filterDept.value) query = query.eq("department", filterDept.value);
       if (filterYear.value) query = query.eq("year", filterYear.value);
       if (filterType.value) query = query.eq("file_type", filterType.value);
 
       const { data, error } = await query;
-
       if (error) {
         notesGrid.innerHTML = `<p>Error loading notes: ${error.message}</p>`;
         return;
       }
-
       if (!data || data.length === 0) {
         notesGrid.innerHTML = "<p>No notes found for selected filters.</p>";
         return;
@@ -172,7 +158,6 @@
     }
 
     applyFilters.addEventListener("click", fetchNotes);
-
     fetchNotes();
   </script>
 </body>
